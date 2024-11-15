@@ -52,7 +52,7 @@ git clone https://github.com/Carlos-dev-G/Evaluacion-IT
 1. Navega a la carpeta del proyecto clonado:
 
    ```bash
-   cd IT
+   cd Evaluacion-IT
    ```
 
 2. Ejecuta el script principal para instalar y configurar las herramientas:
