@@ -44,7 +44,7 @@ sudo apt install git -y
 Clona el repositorio que contiene el script utilizando el siguiente comando:
 
 ```bash
-git clone https://github.com/Carlos-dev-G/IT
+git clone https://github.com/Carlos-dev-G/Evaluacion-IT
 ```
 
 ### **4. Ejecutar el Script**
