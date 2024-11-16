@@ -1,12 +1,18 @@
 import argparse
 import os
+import subprocess
 
-parser = argparse.ArgumentParser(description='Script para agregar un usuario al archivo sudoers')
+parser = argparse.ArgumentParser(description='Script para configurar herramientas y accesos directos en el Escritorio')
 parser.add_argument('--username', type=str, required=True, help='Nombre de usuario para agregar')
 
 argumentos = parser.parse_args()
 
-ruta = f'/home/{argumentos.username}/Escritorio/server.sh'
+# Detectar la ruta del Escritorio
+desktop_path = os.path.expanduser(f'~{argumentos.username}/Escritorio')
+if not os.path.exists(desktop_path):
+    desktop_path = os.path.expanduser(f'~{argumentos.username}/Desktop')
+
+ruta_server_script = os.path.join(desktop_path, 'server.sh')
 
 script = """
 #!/bin/bash
@@ -100,7 +106,24 @@ while true; do
 done
 """
 
-with open(ruta, 'w') as archivo:
+with open(ruta_server_script, 'w') as archivo:
     archivo.write(script)
 
-os.chmod(ruta, 0o755)
+os.chmod(ruta_server_script, 0o755)
+
+ruta_acceso_directo = os.path.join(desktop_path, 'XAMPP_Manager.desktop')
+
+acceso_directo = f"""
+[Desktop Entry]
+Type=Application
+Name=XAMPP Manager
+Exec=sudo /opt/lampp/manager-linux-x64.run
+Icon=/opt/lampp/htdocs/favicon.ico
+Terminal=true
+Categories=Development;
+"""
+
+with open(ruta_acceso_directo, 'w') as archivo:
+    archivo.write(acceso_directo)
+
+os.chmod(ruta_acceso_directo, 0o755)
