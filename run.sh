@@ -126,15 +126,13 @@ clear
 
 # Descargar e instalar XAMPP
 echo "Descargando XAMPP..."
-URL="https://sitsa.dl.sourceforge.net/project/xampp/XAMPP%20Linux/8.2.12/xampp-linux-x64-8.2.12-0-installer.run?viasf=1"
-ARCHIVO="xampp-linux-x64-8.2.12-0-installer.run"
-wget -O "$ARCHIVO" "$URL"
+sudo wget -q https://sitsa.dl.sourceforge.net/project/xampp/XAMPP%20Linux/8.2.12/xampp-linux-x64-8.2.12-0-installer.run?viasf=1 --progress=bar -O xampp-linux-x64-8.2.12-0-installer.run
 
-if [ -f "$ARCHIVO" ]; then
+if [ -f "xampp-linux-x64-8.2.12-0-installer.run" ]; then
     echo "Archivo XAMPP descargado con éxito."
-    chmod +x "$ARCHIVO"
+    chmod +x "xampp-linux-x64-8.2.12-0-installer.run"
     echo "Instalando XAMPP..."
-    sudo ./"$ARCHIVO"
+    sudo ./xampp-linux-x64-8.2.12-0-installer.run
     echo "XAMPP instalado exitosamente."
 else
     echo "Error al descargar el archivo XAMPP."
